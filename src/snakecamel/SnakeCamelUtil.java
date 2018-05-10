@@ -3,9 +3,10 @@ package snakecamel;
 public class SnakeCamelUtil {
 
 	public static String snakeToCamelcase(String snake_case) {
-		String[] words = snake_case.split("_");//_ごとに単語を分ける
+		String[] words = snake_case.split("_",-1);//_ごとに単語を分ける
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < words.length; i++) {
+			//if(words[i]==" ")i++;
 			sb.append(capitalize(words[i]));
 		}
 		return new String(sb);
@@ -30,6 +31,7 @@ public class SnakeCamelUtil {
 	}
 	
 	static String capitalize(String s) {
+		if(s.length()==0)return "";
 		char first = s.charAt(0);//一文字目
 		char upperFirst = Character.toUpperCase(first);//大文字に変換
 		String rest = s.substring(1);//一文字目を切り取ったその残りの文字
